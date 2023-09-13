@@ -4,7 +4,7 @@ import Header from "./components/header";
 
 function App() {
   return (
-    <div>
+    <div className="container mx-auto mt-10">
       <Header />
       <Form />
       <PatientList />
