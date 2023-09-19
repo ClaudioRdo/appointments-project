@@ -24,7 +24,8 @@ const Form = ({ setPatients, patients }) => {
       owner, 
       email, 
       high, 
-      symptoms
+      symptoms,
+      id
     };
 
     setPatients([...patients, patient]);
@@ -46,7 +47,7 @@ const Form = ({ setPatients, patients }) => {
 
       <form className="bg-white shadow-md rounded-lg py-10 px-5 mb-10 "
       onSubmit= {handleSubmit}>
-        { error && <Error msg='All fields are required' /> }
+        { error && <Error> <p>All fields are required</p> </Error>}
         <div className="mb-5">
           <label htmlFor="petName" 
             className="block text-gray-700 uppercase font-bold">
