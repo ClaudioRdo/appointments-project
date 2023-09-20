@@ -1,13 +1,23 @@
 import { useState, useEffect } from 'react';
 import Error from './Error';
 
-const Form = ({ setPatients, patients }) => {
+const Form = ({ setPatients, patients,patient }) => {
   const [ name, setName ] = useState('');
   const [ owner, setOwner ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ high, setHigh ] = useState('');
   const [ symptoms, setSymptoms ] = useState('');
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (Object.keys(patient).length > 0) {
+      setName(patient.name);
+      setOwner(patient.owner);
+      setEmail(patient.Email);
+      setHigh(patient.High);
+      setSymptoms(patient.Symptoms);
+    }
+  }, [patient]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -121,7 +131,7 @@ const Form = ({ setPatients, patients }) => {
 
         <input type="submit" 
         className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-all"
-        value="Add patient" 
+        value={ patient.id ? "Edit patient" : "Add patient"} 
         />
       </form>
     </div>
