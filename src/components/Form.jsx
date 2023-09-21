@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import Error from './Error';
 
-const Form = ({ setPatients, patients, patient }) => {
+const Form = ({ patients, setPatients, patient, setPatient }) => {
   const [ name, setName ] = useState('');
   const [ owner, setOwner ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ high, setHigh ] = useState('');
   const [ symptoms, setSymptoms ] = useState('');
-  const [error, setError] = useState(false);
+  const [ error, setError ] = useState(false);
 
   useEffect(() => {
     if (Object.keys(patient).length > 0) {
@@ -35,16 +35,26 @@ const Form = ({ setPatients, patients, patient }) => {
 
     setError(false);
 
-    const patient = {
+    const newPatient = {
       name,
       owner, 
       email, 
       high, 
       symptoms,
-      id: generateId(),
     };
 
-    setPatients([...patients, patient]);
+    if(patient.id){
+      newPatient.id = patient.id;
+      const editedPatient = patients.map((patientState) => {
+        patientState.id === patient.id ? newPatient : patientState
+      });
+
+      setPatients(editedPatient);
+      setPatient({});
+    }else{
+      newPatient.id = generateId();
+      setPatients([...patients, newPatient]);
+    };
 
     setName('');
     setOwner('');
