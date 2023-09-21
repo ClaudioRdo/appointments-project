@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Error from './Error';
 
-const Form = ({ setPatients, patients,patient }) => {
+const Form = ({ setPatients, patients, patient }) => {
   const [ name, setName ] = useState('');
   const [ owner, setOwner ] = useState('');
   const [ email, setEmail ] = useState('');
@@ -19,6 +19,12 @@ const Form = ({ setPatients, patients,patient }) => {
     }
   }, [patient]);
 
+  const generateId = () => {
+    const random = Math.random().toString(36).substring(2);
+    const date = Date.now().toString(36);
+    return random + date;
+}
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -35,7 +41,7 @@ const Form = ({ setPatients, patients,patient }) => {
       email, 
       high, 
       symptoms,
-      id
+      id: generateId(),
     };
 
     setPatients([...patients, patient]);

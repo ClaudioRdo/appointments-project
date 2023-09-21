@@ -1,9 +1,7 @@
-import { useId } from "react";
 import Patient from "./Patient";
 
 const PatientList = ({ patients, setPatient }) => {
 
-  const id = useId();
   return (
     <div className="md:w-1/2 lg:w-3/5 md:h-screen overflow-y-scroll">
       {patients && patients.length ? (
@@ -18,7 +16,7 @@ const PatientList = ({ patients, setPatient }) => {
 
           {patients.map(patient => (
             <Patient
-              key={id}
+              key={patient.id}
               patient={patient}
               setPatient={setPatient}
             />
