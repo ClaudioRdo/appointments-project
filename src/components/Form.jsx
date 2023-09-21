@@ -13,9 +13,9 @@ const Form = ({ setPatients, patients, patient }) => {
     if (Object.keys(patient).length > 0) {
       setName(patient.name);
       setOwner(patient.owner);
-      setEmail(patient.Email);
-      setHigh(patient.High);
-      setSymptoms(patient.Symptoms);
+      setEmail(patient.email);
+      setHigh(patient.high);
+      setSymptoms(patient.symptoms);
     }
   }, [patient]);
 
